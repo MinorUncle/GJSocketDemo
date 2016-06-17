@@ -7,26 +7,27 @@
 //  Copyright © 2016年 MinorUncle. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "WithoutStreamDemo.h"
 #import <CFNetwork/CFNetwork.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
 
-@interface ViewController ()
+@interface WithoutStreamDemo ()
 {
     BOOL start;
+    CFSocketRef _socket;
+
 }
 @end
 
-@implementation ViewController
-CFSocketRef _socket;
+@implementation WithoutStreamDemo
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
-int i;
+static int i;
 
 -(CFSocketRef)_createSocketWithAddress:(CFDataRef)dataRef protocol:(SInt32)protocol isListen:(bool)isListen {
     struct sockaddr_in* add = (struct sockaddr_in*)CFDataGetBytePtr(dataRef);
@@ -75,9 +76,8 @@ int i;
     CFDataRef data = CFDataCreate(NULL, (UInt8*)&add, sizeof(add));
     return data;
 }
-int i=0;
 
-void _socketCallBack(CFSocketRef s, CFSocketCallBackType type, CFDataRef address, const void *data, void *info){
+static void _socketCallBack(CFSocketRef s, CFSocketCallBackType type, CFDataRef address, const void *data, void *info){
     switch (type) {
         case kCFSocketConnectCallBack:
         {

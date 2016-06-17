@@ -6,20 +6,20 @@
 //  Copyright © 2016年 MinorUncle. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "WithoutStreamDemo.h"
 #import <CFNetwork/CFNetwork.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
 
-@interface ViewController ()
+@interface WithoutStreamDemo ()
 {
     CFSocketRef _socket;
 
 }
 @end
 
-@implementation ViewController
+@implementation WithoutStreamDemo
 
 - (void)viewDidLoad {
     
@@ -28,7 +28,7 @@
 //    [self _createSocketWithIP:INADDR_ANY Port:1090 protocol:SOCK_STREAM family:PF_INET isListen:YES];
        // Do any additional setup after loading the view, typically from a nib.
 }
-int i;
+static int i;
 static void sendataToSocket(CFSocketRef socket){
     NSString* dataS = [NSString stringWithFormat:@"%d",i++];
     CFDataRef data = CFDataCreate(NULL,(UInt8*)dataS.UTF8String , dataS.length);
