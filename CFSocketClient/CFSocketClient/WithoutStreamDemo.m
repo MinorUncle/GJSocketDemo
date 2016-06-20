@@ -150,7 +150,7 @@ static void _socketCallBack(CFSocketRef s, CFSocketCallBackType type, CFDataRef 
     start = !start;
     if (start) {
         NSLog(@"开始连接");
-       _socket = [self _createSocketWithAddress:[self createAddressWithIP:inet_addr("192.168.0.57") port:1091 family:PF_INET] protocol:SOCK_STREAM isListen:NO];
+       _socket = [self _createSocketWithAddress:[self createAddressWithIP:inet_addr("192.168.0.58") port:9000 family:PF_INET] protocol:SOCK_STREAM isListen:NO];
     }else{
         NSLog(@"断开连接");
         CFSocketInvalidate(_socket);
